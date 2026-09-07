@@ -1,0 +1,343 @@
+/* Variables CSS / Custom Properties */
+:root {
+  --color-bg-main: #f4f6f9;
+  --color-bg-card: #ffffff;
+  --color-sidebar: #58111A;
+  --color-sidebar-hover: #721926;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #64748b;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+  --color-border: #e2e8f0;
+  
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --transition-speed: 0.25s;
+}
+
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+/* Layout Principal con CSS Grid */
+.dashboard-container {
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 64px 1fr 48px;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main"
+    "sidebar footer";
+}
+
+/* Encabezado (Header) - Flexbox */
+.header {
+  grid-area: header;
+  background-color: var(--color-bg-card);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+}
+
+.header-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-bg-main);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+}
+
+.header-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  border-radius: 4px;
+  padding: 0.2rem;
+  transition: color var(--transition-speed);
+}
+
+.icon-button:hover,
+.icon-button:focus {
+  color: var(--color-primary);
+  outline: 2px solid var(--color-primary);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+/* Barra Lateral (Sidebar) - Flexbox */
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--color-sidebar);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  padding: 0 0.5rem;
+}
+
+.sidebar-brand h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.sidebar-menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #94a3b8;
+  text-decoration: none;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a:focus,
+.sidebar-menu a.active {
+  background-color: var(--color-sidebar-hover);
+  color: white;
+  outline: none;
+}
+
+/* Área Principal (Main Content) */
+.main-content {
+  grid-area: main;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.content-header h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.content-header p {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Tarjetas de Resumen */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background-color: var(--color-bg-card);
+  padding: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.card-title {
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.card-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.card-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.card-status.positive { color: var(--color-success); }
+.card-status.negative { color: var(--color-danger); }
+
+/* Tabla de Datos */
+.data-section {
+  background-color: var(--color-bg-card);
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  padding: 1.25rem;
+}
+
+.section-header {
+  margin-bottom: 1rem;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.data-table th {
+  background-color: var(--color-bg-main);
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge.completed { background-color: #dcfce7; color: var(--color-success); }
+.badge.pending { background-color: #fef3c7; color: var(--color-warning); }
+.badge.canceled { background-color: #fee2e2; color: var(--color-danger); }
+
+/* Pie de Página (Footer) */
+.footer {
+  grid-area: footer;
+  background-color: var(--color-bg-card);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  padding: 0 1rem;
+}
+
+/* Responsividad (Media Queries) */
+
+/* Tablet (hasta 868px) */
+@media (max-width: 868px) {
+  .dashboard-container {
+    grid-template-columns: 70px 1fr;
+  }
+  
+  .sidebar-brand h2,
+  .sidebar-menu span {
+    display: none;
+  }
+  
+  .sidebar-brand {
+    justify-content: center;
+  }
+  
+  .sidebar-menu a {
+    justify-content: center;
+    padding: 0.8rem;
+  }
+}
+
+/* Móvil (hasta 576px) */
+@media (max-width: 576px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main"
+      "footer";
+  }
+
+  .sidebar {
+    padding: 0.5rem;
+  }
+
+  .sidebar-brand {
+    display: none;
+  }
+
+  .sidebar-menu ul {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .header-search input {
+    width: 120px;
+  }
+  
+  .user-name {
+    display: none;
+  }
+}
